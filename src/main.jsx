@@ -6,6 +6,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./pages/about.jsx";
 import Blog from "./pages/blog.jsx";
 import Contact from "./pages/contact.jsx";
+import Layout from "./components/layout/layout.jsx";
+import AboutLayout from "./components/layout/aboutlayout.jsx";
+import Milestones from "./pages/milestones.jsx";
+import Testimony from "./pages/testimony.jsx";
 
 // const router = createBrowserRouter([
 //   {
@@ -37,7 +41,21 @@ const router = createBrowserRouter([
       },
       {
         path: "About",
-        element: <About />,
+        element: <AboutLayout />,
+        children: [
+          {
+            index: true,
+            element: <About />,
+          },
+          {
+            path: "milestones",
+            element: <Milestones />,
+          },
+          {
+            path: "testimonials",
+            element: <Testimony />,
+          },
+        ],
       },
       {
         path: "blog",
