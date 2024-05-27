@@ -10,6 +10,10 @@ import Layout from "./components/layout/layout.jsx";
 import AboutLayout from "./components/layout/aboutlayout.jsx";
 import Milestones from "./pages/milestones.jsx";
 import Testimony from "./pages/testimony.jsx";
+import NotFound from "./pages/not-found.jsx";
+import Profile from "./pages/profile.jsx";
+import SingleBlogPost from "./pages/single-blog-post.jsx";
+import ThePost from "./pages/the-post.jsx";
 
 // const router = createBrowserRouter([
 //   {
@@ -40,7 +44,7 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: "About",
+        path: "about",
         element: <AboutLayout />,
         children: [
           {
@@ -62,10 +66,22 @@ const router = createBrowserRouter([
         element: <Blog />,
       },
       {
+        path: "blog/:id",
+        element: <ThePost />,
+      },
+      {
+        path: "profile/:hdhdhdhdhdhdh",
+        element: <Profile />,
+      },
+      {
         path: "contact",
         element: <Contact />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
