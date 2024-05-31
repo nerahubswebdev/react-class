@@ -9,7 +9,7 @@ const ThePost = () => {
   console.log("the array => ", BlogPostsArray);
 
   // the singlepost
-  const post = BlogPostsArray.filter((post) => post.id === params.id);
+  const post = BlogPostsArray.filter((post) => post.id === +params.id);
 
   console.log("the clicked post => ", post);
 
