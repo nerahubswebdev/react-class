@@ -1,23 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { BlogPostsArray } from "../helper";
 
 const ThePost = () => {
   const params = useParams();
+  const [post, setPost] = useState();
   console.log("from the post => ", params);
 
-  console.log("the array => ", BlogPostsArray);
+  // function to get the single blog post
 
-  // the singlepost
-  const post = BlogPostsArray.filter((post) => post.id === +params.id);
+  console.log("posts inside post data state => ", post);
 
-  console.log("the clicked post => ", post);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `https://cohort2-blog-api.onrender.com/post/${params.slug}`
+      );
+      const fullresponse = response.json();
+      return fullresponse;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData()
+      .then((miles) => {
+        console.log("the post => ", miles);
+        setPost(miles.post);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div>
       <div className="p-3">
-        <h5 className="text-green-500">{post[0]?.title}</h5>
-        <p className="text-gray-600">{post[0]?.postContent}</p>
+        <img src={post?.post_image} alt="img" />
+        <h5 className="text-green-500">{post?.title}</h5>
+        <p
+          className="text-gray-600"
+          dangerouslySetInnerHTML={{ __html: post?.post_content }}
+        />
       </div>
     </div>
   );
