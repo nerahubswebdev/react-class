@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { baseapi } from "../constants";
 
 const ThePost = () => {
   const params = useParams();
   const [post, setPost] = useState();
   console.log("from the post => ", params);
+
+  console.log("the link => ", baseapi);
 
   // function to get the single blog post
 
@@ -12,9 +15,7 @@ const ThePost = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        `https://cohort2-blog-api.onrender.com/post/${params.slug}`
-      );
+      const response = await fetch(`${baseapi}/post/${params.slug}`);
       const fullresponse = response.json();
       return fullresponse;
     } catch (error) {

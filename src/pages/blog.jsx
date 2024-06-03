@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SingleBlogPost from "./single-blog-post";
+import { baseapi } from "../constants";
 
 const Blog = () => {
+  // const baseapi = import.meta.env.VITE_BASE_API_LINK;
   // our api link
   // https://cohort2-blog-api.onrender.com/post/all-posts
 
@@ -11,9 +13,7 @@ const Blog = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "https://cohort2-blog-api.onrender.com/post/all-posts"
-      );
+      const response = await fetch(`${baseapi}/post/all-posts`);
       const fullresponse = response.json();
       return fullresponse;
     } catch (error) {
