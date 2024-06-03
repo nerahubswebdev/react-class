@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { baseapi } from "../constants";
 
 const ThePost = () => {
@@ -44,6 +44,10 @@ const ThePost = () => {
           dangerouslySetInnerHTML={{ __html: post?.post_content }}
         />
       </div>
+      {/* a button that goes back to the blog page */}
+      <button>
+        <Link to="/blog">go bck</Link>
+      </button>
     </div>
   );
 };
