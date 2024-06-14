@@ -26,8 +26,8 @@ const Profile = () => {
   useEffect(() => {
     fetchData()
       .then((miles) => {
-        console.log("the post => ", miles);
-        setPost(miles.post);
+        console.log("the post => ", miles?.userdetails);
+        setPost(miles?.userdetails);
       })
       .catch((error) => {
         console.log(error);

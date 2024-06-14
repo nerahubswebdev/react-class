@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import parse from "html-react-parser";
 
+// https://cohort2-blog-api.onrender.com/post/userposts/${userId}
+
 const SingleBlogPost = ({ cohort2post }) => {
   //   const something = props.cohort2post;
   console.log("the posts => ", cohort2post?.User);
