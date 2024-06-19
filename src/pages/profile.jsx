@@ -5,7 +5,7 @@ import { baseapi } from "../constants";
 const Profile = () => {
   const params = useParams();
   const [post, setPost] = useState();
-  console.log("from the post => ", params.profile);
+  console.log("from the post => ", params.userid);
 
   console.log("the set post => ", post);
 
@@ -14,7 +14,7 @@ const Profile = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `${baseapi}/post/userposts/${params?.profile}`
+        `${baseapi}/post/userposts/${params?.userid}`
       );
       const fullresponse = response.json();
       return fullresponse;

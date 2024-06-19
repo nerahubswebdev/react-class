@@ -13,7 +13,7 @@ const SingleBlogPost = ({ cohort2post }) => {
       <div className="border border-blue-300 drop-shadow-md rounded-md p-3 h-[550px]">
         <img src={cohort2post?.post_image} alt="img" className="h-60 w-full" />
         <Link
-          to={`/${cohort2post?.User?.id}`}
+          to={`/profile/${cohort2post?.User?.id}`}
           onClick={(e) => e.stopPropagation()}
           className="text-green-500"
         >
