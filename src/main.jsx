@@ -14,6 +14,8 @@ import NotFound from "./pages/not-found.jsx";
 import Profile from "./pages/profile.jsx";
 import SingleBlogPost from "./pages/single-blog-post.jsx";
 import ThePost from "./pages/the-post.jsx";
+import LoginForm from "./pages/loginform.jsx";
+import Registerform from "./pages/registerform.jsx";
 
 // const router = createBrowserRouter([
 //   {
@@ -78,6 +80,14 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+  },
+  {
+    path: "login",
+    element: <LoginForm />,
+  },
+  {
+    path: "register",
+    element: <Registerform />,
   },
   {
     path: "*",
