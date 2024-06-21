@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { baseauth } from "../constants";
 
 const Registerform = () => {
   // creating the states for the form
@@ -7,18 +9,46 @@ const Registerform = () => {
   const [bio, setBio] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [registering, setRegistering] = useState(false);
+
+  //   registration route
+  //http://localhost:9000/user/create
 
   //   handle registraion fxn
 
-  const handleRegisteration = () => {
-    const regDetails = {
-      name,
-      email,
-      bio,
-      password,
-      confirmPassword,
-    };
-    console.log("the reg detrails => ", regDetails);
+  const handleRegisteration = (e) => {
+    e.preventDefault();
+    // const regDetails = {
+    //   name,
+    //   email,
+    //   bio,
+    //   password,
+    //   confirmPassword,
+    // };
+    // console.log("the reg detrails => ", regDetails);
+
+    // the regiter main fxn
+    setRegistering(true);
+    // check if the passwords match
+    if (password !== confirmPassword) {
+      console.log("Passwords dont match");
+      setRegistering(false);
+      return;
+    }
+    axios
+      .post(`${baseauth}/user/create`, {
+        name,
+        bio,
+        email,
+        password,
+      })
+      .then((res) => {
+        console.log("the register response => ", res);
+      })
+      .catch((error) => {
+        console.log("the register error => ", error);
+      })
+      .finally(() => setRegistering(false));
   };
 
   return (
@@ -86,7 +116,8 @@ const Registerform = () => {
           </div>
           <button
             type="submit"
-            className="bg-gray-300 px-5 py-1 rounded-md font-medium hover:bg-gray-600 transition duration-200 hover:text-white"
+            disabled={registering}
+            className="bg-gray-300 px-5 py-1 rounded-md font-medium hover:bg-gray-600 transition duration-700 hover:text-white disabled:cursor-not-allowed disabled:opacity-25"
           >
             Register
           </button>
