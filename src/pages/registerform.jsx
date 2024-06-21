@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { baseauth } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 const Registerform = () => {
+  const navigate = useNavigate();
+
   // creating the states for the form
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,6 +13,7 @@ const Registerform = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [registering, setRegistering] = useState(false);
+  const [errormsg, setErrormsg] = useState("");
 
   //   registration route
   //http://localhost:9000/user/create
@@ -44,9 +48,23 @@ const Registerform = () => {
       })
       .then((res) => {
         console.log("the register response => ", res);
+        setName("");
+        setBio("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+
+        navigate("/login");
       })
       .catch((error) => {
         console.log("the register error => ", error);
+        if (error instanceof axios.AxiosError) {
+          console.log(
+            "the register error from axios => ",
+            error?.response?.data
+          );
+          setErrormsg(error?.response?.data?.message);
+        }
       })
       .finally(() => setRegistering(false));
   };
@@ -114,6 +132,7 @@ const Registerform = () => {
               className="w-full px-3 py-2 outline-none border border-gray-400 rounded-md"
             />
           </div>
+          <div className="text-sm font-light text-red-600">{errormsg}</div>
           <button
             type="submit"
             disabled={registering}
