@@ -16,6 +16,7 @@ import SingleBlogPost from "./pages/single-blog-post.jsx";
 import ThePost from "./pages/the-post.jsx";
 import LoginForm from "./pages/loginform.jsx";
 import Registerform from "./pages/registerform.jsx";
+import { AuthContextProvider } from "./context/auth-context.jsx";
 
 // const router = createBrowserRouter([
 //   {
@@ -97,6 +98,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   </React.StrictMode>
 );
