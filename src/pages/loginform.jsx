@@ -26,7 +26,8 @@ const LoginForm = () => {
         console.log("the register response => ", res);
         setEmail("");
         setPassword("");
-        navigate("/");
+        window.location.assign("/");
+        // navigate("/");
       })
       .catch((error) => {
         console.log("the login error => ", error);

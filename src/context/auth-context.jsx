@@ -10,6 +10,7 @@ export const useAuthContext = () => {
 export const AuthContextProvider = ({ children }) => {
   const baseauth = import.meta.env.VITE_BASE_AUTH_API;
   const [userData, setUserData] = useState(null);
+
   useEffect(() => {
     const validResponse = async () => {
       try {
