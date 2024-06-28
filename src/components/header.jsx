@@ -49,7 +49,9 @@ const Header = () => {
   const logout = () => {
     setIsLoggingOut(true);
     axios
-      .get(`${baseauth}/user/logout`)
+      .get(`${baseauth}/user/logout`, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log("the logout response => ", res);
         // window.location.assign("/");

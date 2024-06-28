@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../context/auth-context.jsx";
-import { baseauth } from "../constants";
+// import { baseauth } from "../constants";
+import axios from "axios";
 
 const About = () => {
+  const baseauth = import.meta.env.VITE_BASE_AUTH_API;
   const { userData } = useAuthContext();
 
   console.log("the validated user data from about page => ", userData);
@@ -13,9 +15,11 @@ const About = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${baseauth}/post/all-posts`);
-      const fullresponse = response.json();
-      return fullresponse;
+      const response = await axios.get(`${baseauth}/post/all-posts`, {
+        withCredentials: true,
+      });
+
+      return response?.data;
     } catch (error) {
       console.log(error);
     }
